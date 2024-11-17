@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cálculo Solar</title>
+</head>
+<body>
+<h1>Calculadora de Painel Solar</h1>
+<form th:action="@{/calculo-orcamento}" th:object="${calculo}" method="post">
+    <label for="areaPainel">Área do Painel:</label>
+    <input type="number" id="areaPainel" th:field="*{areaPainel}" required/>
+
+    <label for="eficienciaPainel">Eficiência do Painel:</label>
+    <input type="number" id="eficienciaPainel" th:field="*{eficienciaPainel}" required/>
+
+    <label for="custoInstalacao">Custo de Instalação:</label>
+    <input type="number" id="custoInstalacao" th:field="*{custoInstalacao}" required/>
+
+    <button type="submit">Calcular</button>
+</form>
+
+<div>
+    <p th:if="${resultado != null}">Resultado: <span th:text="${resultado}"></span></p>
+</div>
+
+</body>
+</html>

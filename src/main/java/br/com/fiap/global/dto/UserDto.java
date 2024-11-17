@@ -13,5 +13,5 @@ public class UserDto {
     private String username;
     private String email;
     private String password;
-    private Set<String> perfis; // Lista de perfis por nome
+    private Set<String> perfis;
 }
