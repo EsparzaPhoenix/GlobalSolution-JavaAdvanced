@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista de Painéis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: white;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    a {
+      display: inline-block;
+      padding: 10px 15px;
+      text-decoration: none;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
+    }
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<h1>Lista de Painéis Solares</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Marca</th>
+    <th>Modelo</th>
+    <th>Voltagem</th>
+    <th>Tipo</th>
+    <th>Valor</th>
+    <th>Dimensões</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="painel : ${paineis}">
+    <td th:text="${painel.marca}"></td>
+    <td th:text="${painel.modelo}"></td>
+    <td th:text="${painel.voltagem}"></td>
+    <td th:text="${painel.tipo}"></td>
+    <td th:text="${painel.valor}"></td>
+    <td th:text="${painel.dimensoes}"></td>
+  </tr>
+  </tbody>
+</table>
+<div>
+  <a th:href="@{/paineis/novo}" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Criar Novo Painel</a>
+</div>
+</body>
+</html>

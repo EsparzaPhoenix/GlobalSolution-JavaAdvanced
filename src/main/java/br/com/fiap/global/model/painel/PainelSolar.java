@@ -1,6 +1,7 @@
 package br.com.fiap.global.model.painel;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,13 +30,16 @@ public class PainelSolar {
     @Column(name = "ds_tipo", nullable = false)
     private TipoPainel tipo;
 
+    @Positive
     @Column(name = "nr_valor", nullable = false)
     private Double valor;
 
+    @Positive
     @Column(name = "nr_dimensoes", nullable = false)
-    private Double dimensoes;
+    private Double dimensoes; // Dimensões em metros quadrados
 
-    @OneToOne(mappedBy = "painel")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cd_estoque")
     private Estoque estoque;
 
 }

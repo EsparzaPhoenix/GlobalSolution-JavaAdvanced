@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu Principal</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+  <h1>Bem-vindo!</h1>
+  <p>Escolha uma opção abaixo:</p>
+  <div>
+    <a href="/paineis">Painéis Solares</a>
+  </div>
+  <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+    <a href="/paineis/novo">Criar Novo Painel</a>
+  </div>
+</div>
+</body>
+</html>

@@ -18,15 +18,17 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable) // Desabilita CSRF para simplificação; remova em produção
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/users/register", "/webjars/**").permitAll()
+                        .requestMatchers("/paineis/novo").hasRole("ADMIN")
+                        .requestMatchers("/paineis").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login") // Define a página de login personalizada
-                        .defaultSuccessUrl("/menu_principal", true) // Redireciona para o menu principal após login bem-sucedido
+                        .defaultSuccessUrl("/menu-principal", true)
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout")
+                        .logoutUrl("/logout") // Configuração de logout
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
                 );
