@@ -1,10 +1,14 @@
 package br.com.fiap.global.model.painel;
 
+import br.com.fiap.global.model.painel.enums.TipoPainel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="GS_JV_PAINEL_SOLAR")
@@ -38,8 +42,7 @@ public class PainelSolar {
     @Column(name = "nr_dimensoes", nullable = false)
     private Double dimensoes; // Dimensões em metros quadrados
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cd_estoque")
-    private Estoque estoque;
+    @OneToMany(mappedBy = "painel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Estoque> estoques = new ArrayList<>();
 
 }

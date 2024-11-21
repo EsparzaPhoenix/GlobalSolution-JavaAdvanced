@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Carrinho</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f4f4f4;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>Carrinho</h1>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Voltagem</th>
+            <th>Tipo</th>
+            <th>Valor (R$)</th>
+            <th>Dimensões (m²)</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${carrinho}">
+            <td th:text="${item.marca}"></td>
+            <td th:text="${item.modelo}"></td>
+            <td th:text="${item.voltagem}"></td>
+            <td th:text="${item.tipo}"></td>
+            <td th:text="${item.valor}"></td>
+            <td th:text="${item.dimensoes}"></td>
+            <td>
+                <form th:action="@{/carrinho/remover}" method="post" style="display: inline;">
+                    <input type="hidden" th:name="id" th:value="${item.id}" />
+                    <button type="submit" class="button" style="background-color: #f44336;">Remover</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/" class="button">Continuar Comprando</a>
+</div>
+</body>
+</html>

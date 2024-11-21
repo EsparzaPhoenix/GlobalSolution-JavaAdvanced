@@ -1,18 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
 <head>
-  <meta charset="UTF-8">
   <title>Menu Principal</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #eafaf1;
+        color: #333;
+    }
+    h1 {
+        text-align: center;
+        color: #2e7d32;
+        margin-bottom: 20px;
+    }
+    .menu-container {
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .menu-item {
+        margin: 10px 0;
+    }
+    .menu-item a {
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+        display: inline-block;
+    }
+    .menu-item a:hover {
+        background-color: #3e8e41;
+    }
+  </style>
 </head>
 <body>
 <div layout:fragment="conteudo">
-  <h1>Bem-vindo!</h1>
-  <p>Escolha uma opção abaixo:</p>
-  <div>
-    <a href="/paineis">Painéis Solares</a>
-  </div>
-  <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-    <a href="/paineis/novo">Criar Novo Painel</a>
+  <h1>Menu Principal</h1>
+  <div class="menu-container">
+    <div class="menu-item">
+      <a th:href="@{/paineis}">Ver Painéis Solares</a>
+    </div>
+    <div class="menu-item">
+      <a th:href="@{/calculo-orcamento}">Calcular Orçamento</a>
+    </div>
+    <div class="menu-item">
+      <a th:href="@{/carrinho}">Visualizar Carrinho</a>
+    </div>
+    <div class="menu-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+      <a th:href="@{/paineis/novo}">Criar Novo Painel</a>
+    </div>
   </div>
 </div>
 </body>

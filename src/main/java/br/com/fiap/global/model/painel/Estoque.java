@@ -1,5 +1,6 @@
 package br.com.fiap.global.model.painel;
 
+import br.com.fiap.global.model.painel.enums.TipoOperacao;
 import br.com.fiap.global.model.pedido.Pedidos;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
@@ -36,8 +37,12 @@ public class Estoque {
     @Column(name = "dt_saida")
     private Date dataSaida;
 
+    @Column(name = "tp_operacao", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TipoOperacao tipoOperacao;
+
     @ManyToOne
-    @JoinColumn(name = "cd_painel")
+    @JoinColumn(name = "cd_painel", nullable = false)
     private PainelSolar painel;
 
 }

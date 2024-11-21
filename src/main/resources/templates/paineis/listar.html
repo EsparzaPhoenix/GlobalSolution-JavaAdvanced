@@ -1,76 +1,87 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
 <head>
-  <title>Lista de Painéis</title>
+  <title>Painéis Solares</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      padding: 0;
-      background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #eafaf1;
+        color: #333;
     }
     h1 {
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
+        text-align: center;
+        color: #2e7d32;
+        margin-top: 20px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-      background-color: white;
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
     }
-    th, td {
-      padding: 10px;
-      text-align: left;
-      border: 1px solid #ddd;
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
     }
-    th {
-      background-color: #4CAF50;
-      color: white;
+    .card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
     }
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
+    .card h2 {
+        font-size: 1.5em;
+        margin: 10px 0;
+        color: #2e7d32;
     }
-    a {
-      display: inline-block;
-      padding: 10px 15px;
-      text-decoration: none;
-      background-color: #007BFF;
-      color: white;
-      border-radius: 5px;
+    .card p {
+        margin: 5px 0;
+        color: #666;
     }
-    a:hover {
-      background-color: #0056b3;
+    .card .price {
+        font-size: 1.2em;
+        color: #4CAF50;
+        font-weight: bold;
+    }
+    .card .button {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 15px;
+        text-decoration: none;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+    }
+    .card .button:hover {
+        background-color: #3e8e41;
     }
   </style>
 </head>
 <body>
-<h1>Lista de Painéis Solares</h1>
-<table>
-  <thead>
-  <tr>
-    <th>Marca</th>
-    <th>Modelo</th>
-    <th>Voltagem</th>
-    <th>Tipo</th>
-    <th>Valor</th>
-    <th>Dimensões</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="painel : ${paineis}">
-    <td th:text="${painel.marca}"></td>
-    <td th:text="${painel.modelo}"></td>
-    <td th:text="${painel.voltagem}"></td>
-    <td th:text="${painel.tipo}"></td>
-    <td th:text="${painel.valor}"></td>
-    <td th:text="${painel.dimensoes}"></td>
-  </tr>
-  </tbody>
-</table>
-<div>
-  <a th:href="@{/paineis/novo}" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Criar Novo Painel</a>
+<div layout:fragment="conteudo">
+  <h1>Painéis Solares</h1>
+  <div class="container">
+    <div class="grid">
+      <div class="card" th:each="painel : ${paineis}">
+        <h2 th:text="${painel.marca} + ' - ' + ${painel.modelo}"></h2>
+        <p><strong>Voltagem:</strong> <span th:text="${painel.voltagem}"></span>V</p>
+        <p><strong>Tipo:</strong> <span th:text="${painel.tipo}"></span></p>
+        <p><strong>Dimensões:</strong> <span th:text="${painel.dimensoes}"></span> m²</p>
+        <p class="price" th:text="${painel.valor} + ' R$'"></p>
+        <form th:action="@{/carrinho/adicionar}" method="post">
+          <input type="hidden" th:name="id" th:value="${painel.id}" />
+          <button type="submit" class="button">Adicionar ao Carrinho</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>

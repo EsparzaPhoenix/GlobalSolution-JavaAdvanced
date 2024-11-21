@@ -1,80 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
 <head>
     <title>Cálculo Solar</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #e7f3fe;
-            color: #31708f;
-            border: 1px solid #bce8f1;
-            border-radius: 5px;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
-<h1>Calculadora de Painel Solar</h1>
-<form th:action="@{/calculo-orcamento}" th:object="${calculo}" method="post">
-    <label for="areaPainel">Área do Painel:</label>
-    <input type="number" id="areaPainel" th:field="*{areaPainel}" required/>
+<div layout:fragment="conteudo">
+    <h1>Calculadora de Painel Solar</h1>
+    <form th:action="@{/calculo-orcamento}" th:object="${calculo}" method="post">
+        <label for="areaPainel">Área do Painel:</label>
+        <input type="number" id="areaPainel" th:field="*{areaPainel}" required />
 
-    <label for="eficienciaPainel">Eficiência do Painel:</label>
-    <input type="number" id="eficienciaPainel" th:field="*{eficienciaPainel}" required/>
+        <label for="eficienciaPainel">Eficiência do Painel:</label>
+        <input type="number" id="eficienciaPainel" th:field="*{eficienciaPainel}" required />
 
-    <label for="custoInstalacao">Custo de Instalação:</label>
-    <input type="number" id="custoInstalacao" th:field="*{custoInstalacao}" required/>
+        <label for="custoInstalacao">Custo de Instalação:</label>
+        <input type="number" id="custoInstalacao" th:field="*{custoInstalacao}" required />
 
-    <button type="submit">Calcular</button>
-</form>
+        <button type="submit">Calcular</button>
+    </form>
 
-<div class="result" th:if="${resultado != null}">
-    Resultado: <span th:text="${resultado}"></span>
+    <div class="result" th:if="${resultado != null}">
+        Resultado: <span th:text="${resultado}"></span>
+    </div>
 </div>
-
 </body>
 </html>

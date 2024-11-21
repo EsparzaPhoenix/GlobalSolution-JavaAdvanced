@@ -1,4 +1,4 @@
-package br.com.fiap.global.model.painel;
+package br.com.fiap.global.model.painel.enums;
 
 public enum TipoPainel {
 

@@ -1,68 +1,111 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Novo Painel Solar</title>
+  <title>Criar Novo Painel Solar</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      padding: 0;
-      background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #eafaf1;
+        color: #333;
     }
     h1 {
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
+        text-align: center;
+        color: #2e7d32;
+        margin-top: 20px;
+    }
+    nav {
+        background-color: #4CAF50;
+        padding: 10px;
+        text-align: center;
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        font-weight: bold;
+    }
+    nav a:hover {
+        text-decoration: underline;
     }
     form {
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
     }
     input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    input:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
     }
     button {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
     }
     button:hover {
-      background-color: #45a049;
+        background-color: #45a049;
+    }
+    .container {
+        text-align: center;
+        margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
 <h1>Criar Novo Painel Solar</h1>
+<nav>
+  <a th:href="@{/}">Home</a>
+  <a th:href="@{/paineis}">Painéis</a>
+  <a th:href="@{/calculo-orcamento}">Calcular Orçamento</a>
+  <a th:href="@{/carrinho}">Carrinho</a>
+  <a th:href="@{/login}">Login</a>
+  <a th:href="@{/users/register}">Registrar</a>
+</nav>
 <form th:action="@{/paineis/novo}" th:object="${painel}" method="post">
-  <label>Marca:</label>
-  <input type="text" th:field="*{marca}" required />
-  <label>Modelo:</label>
-  <input type="text" th:field="*{modelo}" required />
-  <label>Voltagem:</label>
-  <input type="text" th:field="*{voltagem}" required />
-  <label>Tipo:</label>
-  <input type="text" th:field="*{tipo}" required />
-  <label>Valor:</label>
-  <input type="text" th:field="*{valor}" required />
-  <label>Dimensões:</label>
-  <input type="text" th:field="*{dimensoes}" required />
+  <label for="marca">Marca:</label>
+  <input type="text" id="marca" th:field="*{marca}" required />
+
+  <label for="modelo">Modelo:</label>
+  <input type="text" id="modelo" th:field="*{modelo}" required />
+
+  <label for="voltagem">Voltagem:</label>
+  <input type="text" id="voltagem" th:field="*{voltagem}" required />
+
+  <label for="tipo">Tipo:</label>
+  <input type="text" id="tipo" th:field="*{tipo}" required />
+
+  <label for="valor">Valor:</label>
+  <input type="text" id="valor" th:field="*{valor}" required />
+
+  <label for="dimensoes">Dimensões:</label>
+  <input type="text" id="dimensoes" th:field="*{dimensoes}" required />
+
   <button type="submit">Salvar</button>
 </form>
 </body>

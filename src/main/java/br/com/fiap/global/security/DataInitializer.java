@@ -1,7 +1,7 @@
 package br.com.fiap.global.security;
 
 import br.com.fiap.global.model.painel.PainelSolar;
-import br.com.fiap.global.model.painel.TipoPainel;
+import br.com.fiap.global.model.painel.enums.TipoPainel;
 import br.com.fiap.global.model.user.Perfil;
 import br.com.fiap.global.model.user.UserAccount;
 import br.com.fiap.global.repository.PainelSolarRepository;

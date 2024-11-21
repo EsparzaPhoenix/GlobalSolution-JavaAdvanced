@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
-<div layout:fragment="conteudo" class="container mt-5" style="max-width: 400px;">
-    <h2 class="text-center">Login</h2>
+<div layout:fragment="conteudo">
+    <h1>Login</h1>
     <form th:action="@{/login}" method="post">
         <div th:if="${param.error}" class="alert alert-danger">
             Nome de usuário ou senha inválidos. Por favor, tente novamente.
         </div>
-        <div class="mb-3">
-            <label for="username" class="form-label">Usuário</label>
-            <input type="text" class="form-control" id="username" name="username" required>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+        <label for="username">Usuário</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Entrar</button>
     </form>
 </div>
 </body>
