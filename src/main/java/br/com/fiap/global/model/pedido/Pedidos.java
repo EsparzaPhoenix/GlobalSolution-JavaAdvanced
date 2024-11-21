@@ -1,6 +1,7 @@
 package br.com.fiap.global.model.pedido;
 
 
+import br.com.fiap.global.model.user.UserAccount;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
@@ -29,10 +30,6 @@ public class Pedidos {
     @Min(1)
     private int quantidade;
 
-    @Column(name = "vlr_unitario", nullable = false)
-    @Positive
-    private Double valorUnitario;
-
     @Column(name = "vlr_total", nullable = false)
     @Positive
     private Double valorTotal;
@@ -40,5 +37,7 @@ public class Pedidos {
     @Column(name = "dt_pedido", nullable = false)
     private Date dataPedido;
 
-
+    @ManyToOne
+    @JoinColumn(name = "cd_user", nullable = false)
+    private UserAccount user;
 }

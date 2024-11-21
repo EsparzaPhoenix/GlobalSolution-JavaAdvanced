@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pedido Finalizado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${mensagem}">Seu pedido foi finalizado com sucesso!</h1>
+    <p>Detalhes do pedido:</p>
+    <p><strong>ID do Pedido:</strong> <span th:text="${pedidoId}"></span></p>
+    <p><strong>Valor Total:</strong> R$ <span th:text="${valorTotal}"></span></p>
+    <a href="/" class="button">Voltar para a Home</a>
+</div>
+</body>
+</html>

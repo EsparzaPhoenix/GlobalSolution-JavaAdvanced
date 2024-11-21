@@ -77,11 +77,11 @@ public class UserAccount implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;  // Você pode customizar essa lógica conforme necessário
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;  // Você pode customizar essa lógica conforme necessário
+        return true;
     }
 }

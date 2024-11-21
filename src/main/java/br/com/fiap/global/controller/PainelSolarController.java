@@ -46,10 +46,10 @@ public class PainelSolarController {
         // Atualiza o estoque relacionado
         Estoque estoque = new Estoque();
         estoque.setPainel(painel);
-        estoque.setQuantidade(0); // Quantidade inicial pode ser ajustada conforme necessário
-        estoque.setValor(painel.getValor()); // Exemplo: valor do painel
+        estoque.setQuantidade(0);
+        estoque.setValor(painel.getValor());
         estoque.setDataEntrada(new Date());
-        estoque.setTipoOperacao(TipoOperacao.ENTRADA); // Enum para controle de tipo de operação
+        estoque.setTipoOperacao(TipoOperacao.ENTRADA);
 
         // Salva o estoque no repositório
         estoqueRepository.save(estoque);
